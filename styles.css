@@ -1,16 +1,20 @@
 
-table {
-    width: "50%";
-    height:" 50%";
-}
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
 body {
-	background: lightseagreen;
-    background-image: url('https://media4.giphy.com/media/M9TbsVzWI8YAEEJJ5u/giphy.gif?cid=20eb4e9d0d3joslg1koj70wy1411yqyo1i78ox0rqdfply4k&rid=giphy.gif&ct=s');
+	background: lightskyblue;
+    /* background-image: url('https://media4.giphy.com/media/M9TbsVzWI8YAEEJJ5u/giphy.gif?cid=20eb4e9d0d3joslg1koj70wy1411yqyo1i78ox0rqdfply4k&rid=giphy.gif&ct=s'); */
     background-repeat: repeat;
     background-size: 820px 800px;
     height: 100%;
     overflow-y: hidden;
+
+    margin:0;
+    padding: 0;
+    overflow: auto;
+
 }
+
 .add_boat {
     background-image: url('./ship.png');
     background-repeat: no-repeat;
@@ -25,32 +29,6 @@ body {
     display: none;
 }
 
-/* .boxes{
-	color:blue;
-	outline-width: 1px;
-	outline-color: blue;
-} */
-
-.centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-#btn {
-    
-    margin: 1in auto 0;
-}
-table {
-	border-collapse: separate;
-	border-spacing: 3px;
-	margin: 0 auto;
-}
 
 td {
 	position: relative;
@@ -76,10 +54,74 @@ td div {
  .miss {
     background: darkgray
  }
+h1 {
+    text-align: center;
+}
+.score {
+    text-align: center;
+}
 
+.board {
+  
+  width: 45%;
+  height: 90%;
+  margin: 2rem auto 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  
+} 
 
+.outerDiv {
+    
+    height: 70%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 
+table {
+    scale: 0.6;
+    margin: 0 auto;
+}
 
+#messageArea {
+    font-family: 'Tilt Warp', cursive;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    color: black;
+    font-size: 25px;
+    
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+}
+button {
+    font-family: 'Muli', sans-serif;
+    font-size: 1.2rem;
+    background-color: #00cc99;
+    color: #fff;
+    border-radius: 10%;
+    border-color: white;
+    border-width: 5px;
+    
+    /* centering */
+    position: absolute;
+    top: 25%;
+    left:46%;
+    padding: 10px 20px;
+    margin:20px;
+}
 
-
-
+h1 {
+    font-family: 'Tilt Warp', cursive;
+    font-size: 60px;
+}
+#btn {
+    margin:auto;
+}

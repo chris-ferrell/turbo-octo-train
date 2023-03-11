@@ -1,61 +1,49 @@
-document.getElementById("btn").addEventListener("click", generateBoard);
-document.getElementById("btn1").addEventListener("click", createship);
-document.addEventListener('keydown', function(){
-    const button = document.getElementById("btn");
-    const button2 = document.getElementById("btn1");
-    const div = document.createElement("div")
-    div.innerHTML = "BATTLESHIP";
-
-    document.body.appendChild(div);
-
-    button.style.display = "block";
-    button2.style.display = "block";
-
-    div.style.display = "flex";
-    div.style.justifyContent = "center";
-    div.style.alignItems = "center";
-    div.style.top = "0";
-    div.style.width = "100%";
-
-})
-
-// displayMiss: function(location) {
-//     var cell = document.getElementById(location);
-//     cell.setAttribute("class","miss");
-// }
-// };
+document.getElementById("btn").addEventListener("click", generateBoard, () => {
+    const scoreCount = document.getElementsId("score");
+    scoreCount.style.display = "block"
+    
+});
+//document.getElementById("btn1").addEventListener("click", createship);
 
 
 
 
 
+
+
+var counter  = 0;
 function logBoxes(event) {
+    
     const td = event.target.parentNode; // gets the id of cell || <td>  instead of the <div>'s id
     const id = td.getAttribute("id");
+    const MessageArea = document.getElementById("messageArea");
 
-    const clk_id = event.target.id;
-    const clk_td = document.getElementById(id);
+    
     if(id == "boat"){
+        counter++
+        
         console.log("boat hit!")
-        //td.classList.add("hit")
-        //td.classList.add("add_boat")
+        MessageArea.innerHTML = "Boat Hit!"
+        
         event.target.classList.add("add_boat");
-        //clk_td.style.backgroundImage = "url(ship.png)";
-        //console.log(document.getElementById(id));
-        //document.getElementById(`${div_id}`).style.backgroundImage = "url('./ship.png')" ;
-        //event.target.style.backgroundImage = "url('./ship.png')";
-        // change something to indecate the boat was hit 
+        //ends game
+        if (counter > 10 || counter == 10 ){
+            MessageArea.innerHTML = "GAME OVER"
+            return 
+        }
+       
+        
+        
+       
     } else {
-        //td.style.backgroundImage = "url('./wave.png')";
-        //document.getElementById(`${div_id}`).style.backgroundImage = "url('./wave')" ;
-        //console.log(document.getElementById(id));
-        //clk_td.style.backgroundImage = "url(wave.png)";
+        MessageArea.innerHTML = "it's a miss!"
+        
         event.target.classList.add("add_water")
-        //td.classList.add("add_water")
+        
         console.log("miss")
-        //td.classList.add("miss")
+       
     } 
-    //console.log("clicked");
+    
 
 
 
@@ -144,6 +132,7 @@ function generateBoard(arr) {
   //create table
   const table = document.createElement("table");
   table.setAttribute("id", "table");
+  table.classList.add("board")
 
   for (let i = 0; i <= 10; i++) {
     let loopSize = obj.next().value;
@@ -161,6 +150,7 @@ function generateBoard(arr) {
     tr.appendChild(th);
 
     for (let j = 0; j < loopSize.length; j++) {
+
       const td = document.createElement("td");
       td.setAttribute("class",`${letter[i]}`)
       td.classList.add("boxes");
@@ -178,17 +168,27 @@ function generateBoard(arr) {
     // append row to table
     table.appendChild(tr);
   }
-  
-  // append table to body
-  document.body.appendChild(table);
 
+  const outerDiv = document.createElement("div");
+
+  outerDiv.setAttribute("id","outerDiv");
+  
+  outerDiv.appendChild(table);
+ 
+  // append table to body
+  document.body.appendChild(outerDiv);
+  
+  
+  //adds event listeners to all Rows and Cells
   const boxes = document.querySelectorAll(".boxes");
   
     
       for (let i = 0; i < boxes.length; ++i){
-        //console.log(boxes[i].id)
+        
         boxes[i].addEventListener("click",logBoxes);
       }
+
+   createship();
   
 }
 
@@ -206,7 +206,7 @@ function isValid(row,col){
         }
     }
 }
-function createship() {
+function createship(ships =0,length = 3) {
     const letterRow = letter[Math.floor(Math.random() * letter.length)];
     const startCol = Math.floor(Math.random() * 10);
     const startRow = Math.floor(Math.random() * 10);
@@ -218,14 +218,39 @@ function createship() {
 
 
     let allRows  = document.getElementById("table").rows
+    if (ships == 0){
+        for (let i = 0; i < 10; ++i){ // places x amount of boats 
+            //places single boats
+            allRows[num()].cells[num()].setAttribute("id","boat");
     
-    for (let i = 0; i < 3; ++i){ // places x amount of boats 
-       
-        allRows[num()].cells[num()].setAttribute("id","boat");
+            console.log(`Row ${startRow} Col ${startCol}`)
+           
+           
+        } 
+    } else if (length == 3){
+        let placedShips = 0;
 
-        console.log(`Row ${startRow} Col ${startCol}`)
-       
-       
+        do {
+            let validArray = []
+            for (let i=0; i < length; ++i){
+                validArray.push(isValid(startRow,startCol + i))
+            } for (let i = 0; i < validArray.length; ++i){
+                if(validArray[i] === false) {
+                    break 
+                } else {
+                    allRows[startRow].cells[startCol + 1].setAttribute("id","boat");
+                }
+            }
+            ++placedShips
+        } while (placedShips != ships)
+        // places X amt of ships
+        for (let i = 0; i <= ships; ++i){
+            for (let j = 0; j < length; ++j){
+                //places 3 cell long boats
+
+            }
+        }
     }
+    
 
 }

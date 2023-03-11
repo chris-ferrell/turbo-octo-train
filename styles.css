@@ -1,0 +1,85 @@
+
+table {
+    width: "50%";
+    height:" 50%";
+}
+body {
+	background: lightseagreen;
+    background-image: url('https://media4.giphy.com/media/M9TbsVzWI8YAEEJJ5u/giphy.gif?cid=20eb4e9d0d3joslg1koj70wy1411yqyo1i78ox0rqdfply4k&rid=giphy.gif&ct=s');
+    background-repeat: repeat;
+    background-size: 820px 800px;
+    height: 100%;
+    overflow-y: hidden;
+}
+.add_boat {
+    background-image: url('./ship.png');
+    background-repeat: no-repeat;
+    background-size: 65px 65px; 
+}
+.add_water {
+    background-image: url('./wave.png');
+    background-repeat: no-repeat;
+    background-size: 65px 65px;
+}
+.hidden{
+    display: none;
+}
+
+/* .boxes{
+	color:blue;
+	outline-width: 1px;
+	outline-color: blue;
+} */
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#btn {
+    
+    margin: 1in auto 0;
+}
+table {
+	border-collapse: separate;
+	border-spacing: 3px;
+	margin: 0 auto;
+}
+
+td {
+	position: relative;
+	width: 70px;
+	height: 70px;
+	border: 1px solid #152C59;
+	
+    
+}
+
+td:hover {
+	background: lightgreen;
+    opacity: 50%;
+}
+
+td div {
+ 	width: 70px;
+	height: 70px;
+ }
+ .hit {
+    background: red;
+ }
+ .miss {
+    background: darkgray
+ }
+
+
+
+
+
+
+
